@@ -1,0 +1,3 @@
+.active{
+    @apply font-[500] scale-[1.1]
+}

@@ -1,39 +1,49 @@
 <nav class="w-full fixed top-0 flex justify-center items-center h-[3.5rem] bg-[#242424]">
     <div class="container h-full mx-auto flex justify-between items-center">
-        <a class="text-white flex justify-center items-center text-[1rem] cursor-pointer">Dating App</a>
-        <ul class="flex flex-row gap-3 justify-center" *ngIf="accountService.currentUser$ | async">
-            <li class="flex justify-center items-center">
-                <a 
-                    href="#"
-                    class="text-white text-[.8rem] cursor-pointer"
-                >
-                    Matches
-                </a>
-            </li>
-            <li class="flex justify-center items-center">
-                <a 
-                    href="#"
-                    class="text-white flex justify-center items-center text-[.8rem] cursor-pointer"
-                >
-                    Lists
-                </a>
-            </li>
-            <li class="flex justify-center items-center">
-                <a 
-                    href="#"
-                    class="text-white flex justify-center items-center text-[.8rem] cursor-pointer"
-                >
-                    Messages
-                </a>
-            </li>
+        <a routerLinkActive="font-[500] scale-[1.1]" routerLink="/" class="text-white flex justify-center items-center text-[1rem] cursor-pointer">Dating App</a>
+        <ul 
+            class="flex flex-row gap-3 justify-center"
+        >
+            <ng-container 
+                *ngIf="accountService.currentUser$ | async"
+            >
+                <li class="flex justify-center items-center">
+                    <a 
+                        routerLink="/members"
+                        class="text-white hover:font-[500] transition-all duration-300 text-[.8rem] cursor-pointer"
+                        routerLinkActive="font-[500] scale-[1.1]"
+                    >
+                        Matches
+                    </a>
+                </li>
+                <li class="flex justify-center items-center">
+                    <a 
+                        routerLink="/lists"
+                        class="text-white hover:font-[500]  transition-all duration-300 flex justify-center items-center text-[.8rem] cursor-pointer"
+                        routerLinkActive="font-[500] scale-[1.1]"
+                        >
+                        Lists
+                    </a>
+                </li>
+                <li class="flex justify-center items-center">
+                    <a 
+                        routerLink="/messages"
+                        class="text-white hover:font-[500]  transition-all duration-300 flex justify-center items-center text-[.8rem] cursor-pointer"
+                        routerLinkActive="font-[500] scale-[1.1]"
+                        >
+                        Messages
+                    </a>
+                </li>
+            </ng-container>
+            
         </ul>
 
         <div 
             (click)="dropDwn()"
-            *ngIf="accountService.currentUser$ | async"
+            *ngIf="(accountService.currentUser$ | async) as user"
             class="cursor-pointer flex justify-center items-center h-full relative text-white"
         >
-            Welcome user <mat-icon matSuffix>expand_more</mat-icon>
+            Welcome {{user.userName | titlecase}} <mat-icon matSuffix>expand_more</mat-icon>
             <div 
                 [ngClass]="{ 'flex': isDropDwn, 'hidden' : !isDropDwn }" 
                 class="absolute bg-black hidden gap3  p-3 w-[120%] top-[100%] transition-all duration-300 flex-col"
