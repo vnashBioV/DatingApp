@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <div 
+        *ngIf="!registerMode"
+        class="text-center"
+    >
+        <h1>Find your match</h1>
+        <p class="lead">Come on in to view your matches... all you need to do is sign up!</p>
+        <div class="text-center">
+            <button 
+                class="mr-2 p-3 border rounded-xl border-[#ff3457] text-[#ff3457]"
+                (click)="registerToggle()"
+            >
+                Register
+            </button>
+            <button class="p-3 rounded-xl bg-black text-white border border-black">Learn more</button>
+        </div>
+    </div>
+
+    <div 
+        *ngIf="registerMode"
+        class="container mx-auto flex justify-center items-center"
+    >
+        <div class="flex flex-row justify-center items-center">
+            <div class="grid">
+                <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
+            </div>
+        </div>
+    </div>
+</div>
